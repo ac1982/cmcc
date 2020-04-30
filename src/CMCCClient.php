@@ -14,7 +14,7 @@ class CMCCClient
     protected $version = '3.0';
     protected $format = 'json';//XML or JSON
     protected $key = '';
-    protected $timeout = 2;
+    public $timeout = 2;
 
 
     /**
