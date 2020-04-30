@@ -10,8 +10,14 @@ $ composer require ac1982/cmcc -vvv
 ```
 
 ## Usage
+```php
+use AC1982\CMCC;
 
-```(new AC1982\CMCCClient())->query('triopi.member.iccid.all.query','XXXXXX')```
+$config=['companyId'=>'13800138000','appKey'=>'2321323232','secret'=>'aefdfsagweg'];
+
+(new AC1982\CMCCClient($config))->query('triopi.member.iccid.all.query','XXXXXX');
+```
+
 ## Note
 
 这是移动物联云的客户端，最简单的实现。
