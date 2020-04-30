@@ -31,7 +31,7 @@ class CMCCClient
         $this->version = $config['version'] ?? '3.0';
         $this->format = $config['format'] ?? 'json';
         if (empty($config['secret']) && strlen($config['secret'])) {
-            throw new \Exception('Secret should larger than 24 characters.');
+            throw new \Exception('Secret should be larger than 24 characters.');
         }
         if (!empty($config['timeout'])) {
             $this->timeout = $config['timeout'];
