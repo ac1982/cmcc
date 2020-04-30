@@ -15,19 +15,23 @@ class CMCCClient
     protected $format = 'json';//XML or JSON
     protected $key = '';
 
+
     /**
      * CMCCClient constructor.
-     * You can get the config from CMCC.
      * @param array $config
+     * @throws \Exception
      */
     public function __construct(array $config)
     {
-        $this->companyId=$config['companyId'];
-        $this->appKey=$config['appKey'];
-        $this->secret=$config['secret'];
-        $this->host=$config['host'];
-        $this->version=$config['version'];
-        $this->format=$config['format'];
+        $this->companyId = $config['companyId'];
+        $this->appKey = $config['appKey'];
+        $this->secret = $config['secret'];
+        $this->host = $config['host'];
+        $this->version = $config['version'] ?? '3.0';
+        $this->format = $config['format'] ?? 'json';
+        if (empty($config['secret']) && strlen($config['secret'])) {
+            throw new \Exception('Secret should larger than 24 characters.');
+        }
         $this->key = substr($this->secret, 0, 24);
     }
 
