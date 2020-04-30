@@ -12,14 +12,29 @@ class CMCCClient
     protected $secret = '';    //移动物联网分发的Secret
     protected $host = '';
     protected $version = '3.0';
-    protected $format = 'json';
+    protected $format = 'json';//XML or JSON
     protected $key = '';
 
-    public function __construct()
+    /**
+     * CMCCClient constructor.
+     * You can get the config from CMCC.
+     * @param array $config
+     */
+    public function __construct(array $config)
     {
+        $this->companyId=$config['companyId'];
+        $this->appKey=$config['appKey'];
+        $this->secret=$config['secret'];
+        $this->host=$config['host'];
+        $this->version=$config['version'];
+        $this->format=$config['format'];
         $this->key = substr($this->secret, 0, 24);
     }
 
+    /**
+     * @param array $parameters
+     * @return string
+     */
     protected function signature(array $parameters): string
     {
         $string = '';
