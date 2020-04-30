@@ -14,6 +14,7 @@ class CMCCClient
     protected $version = '3.0';
     protected $format = 'json';//XML or JSON
     protected $key = '';
+    protected $timeout = 2;
 
 
     /**
@@ -31,6 +32,9 @@ class CMCCClient
         $this->format = $config['format'] ?? 'json';
         if (empty($config['secret']) && strlen($config['secret'])) {
             throw new \Exception('Secret should larger than 24 characters.');
+        }
+        if (!empty($config['timeout'])) {
+            $this->timeout = $config['timeout'];
         }
         $this->key = substr($this->secret, 0, 24);
     }
@@ -53,7 +57,10 @@ class CMCCClient
 
     public function query(string $method, string $iccid)
     {
-        $client = new Client();
+        $client = new Client([
+            'timeout' => $this->timeout,
+            'http_errors' => false,
+        ]);
         $params = [
             'appKey' => $this->appKey,
             'method' => $method,
