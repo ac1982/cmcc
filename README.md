@@ -11,7 +11,7 @@ $ composer require ac1982/cmcc -vvv
 
 ## Usage
 
-```(new AC1982\CMCC())->query('triopi.member.iccid.all.query','XXXXXX')```
+```(new AC1982\CMCCClient())->query('triopi.member.iccid.all.query','XXXXXX')```
 ## Note
 
 这是移动物联云的客户端，最简单的实现。
