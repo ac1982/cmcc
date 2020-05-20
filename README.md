@@ -15,7 +15,7 @@ use AC1982\CMCC;
 
 $config=['companyId'=>'13800138000','appKey'=>'2321323232','secret'=>'aefdfsagweg'];
 
-(new AC1982\CMCCClient($config))->query('triopi.member.iccid.all.query','XXXXXX');
+(new AC1982\CMCCClient($config))->query('triopi.member.iccid.all.query', ['iccid'=>'200010000221']);
 ```
 
 ## Note
