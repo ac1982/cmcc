@@ -55,7 +55,7 @@ class CMCCClient
         return strtoupper(sha1($string));
     }
 
-    public function query(string $method, string $iccid)
+    public function query(string $method, array $requests)
     {
         $client = new Client([
             'timeout' => $this->timeout,
@@ -64,17 +64,14 @@ class CMCCClient
         $params = [
             'appKey' => $this->appKey,
             'method' => $method,
-            'iccid' => $iccid,
             'format' => $this->format,
             'v' => $this->version,
             'transID' => $this->companyId . date('YmdHsiv') . random_int(1000, 9999),
         ];
+        $params += $requests;
         $params += ['sign' => $this->signature($params)];
-
         $res = $client->post($this->host, ['form_params' => $params]);
-
         $message = $res->getBody()->getContents();
-
         return $this->decrypt($message);
     }
 
