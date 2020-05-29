@@ -27,7 +27,7 @@ class CMCCClient
         $this->companyId = $config['companyId'];
         $this->appKey = $config['appKey'];
         $this->secret = $config['secret'];
-        $this->host = $config['host'] ?? 'http://120.197.89.173:8081/openapi/router';
+        $this->host = $config['host'] ?? 'https://api.iot.gd.chinamobile.com/openapi/router';
         $this->version = $config['version'] ?? '3.0';
         $this->format = $config['format'] ?? 'json';
         if (empty($config['secret']) && strlen($config['secret'])) {
